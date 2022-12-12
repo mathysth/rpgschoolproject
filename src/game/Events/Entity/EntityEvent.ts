@@ -1,8 +1,9 @@
 import Entity from "../../Entities/Entity/Entity";
-import { IEventActions } from "../Actions/EventActions";
+import { IEventActions } from '../Actions/EventActions';
 import Events from "../Events";
 
-export class EntityEvent extends Events<Entity>{
+export default class EntityEvent extends Events<Entity>{
+
   protected action(action: IEventActions<Entity>) {
     switch (action.name) {
       case "attack": {
@@ -27,4 +28,5 @@ export class EntityEvent extends Events<Entity>{
   public isDead<F extends Entity>(entity: F): boolean {
     return entity.health <= 0;
   }
+
 }

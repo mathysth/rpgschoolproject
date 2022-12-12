@@ -1,5 +1,5 @@
 import Entity from "../../Entities/Entity/Entity";
-import { EntityEvent } from "../Entity/EntityEvent";
+import Human from './../../Entities/Human/Human';
 import { IEvent } from './../../Interfaces/IEvent';
 import EventFactory from './../factory/EventFactory';
 
@@ -7,12 +7,21 @@ export default class EventActions{
     public static readonly listAction = [
         {
             name: 'attack',
-            referTo: EntityEvent
+            //TODO: comprendre pourquoi lorsque je met EntityEvent le processus crash
+            referTo: Human
         }
     ]
     
     public static handleAction<E extends Entity>(event: IEvent<E>): void{
-        const test = EventFactory.formatEvent(event.action, event.caller)
+        console.log(event );
+        
+        const test: {key: number} & IEventActions<Entity> | void = EventFactory.formatEvent(event.action, event.caller);        
+        if(test){
+            const mon = new this.listAction[test.key].referTo();
+            console.log('mon');
+            console.log(mon);
+            
+        }
         console.log('test');
         console.log(test);
         
@@ -25,7 +34,7 @@ export default class EventActions{
 
 export interface IEventActions<E extends Entity>{
     name: string
-    referTo: any
+    // referTo: any
     entities: {
         caller: E
         target?: E

@@ -1,9 +1,10 @@
 import Entity from "../Entities/Entity/Entity";
-import Events from "../Events/Events";
+import RoundRandomCollection from '../Utils/RamdomCollection';
+import Events from './../Events/Events';
 
 export default class Round<E extends Entity> {
   private currentRound: number = 0;
-  private readonly event: Events<E> = new Events();
+  private readonly event: Events<E>;
   private readonly gameScenario = [
     {
       meetChance: 50,
@@ -20,7 +21,9 @@ export default class Round<E extends Entity> {
   ];
   private maxRound: number;
   private readonly player: E;
+  
   constructor(maxRound: number, player: E) {
+    this.event = new Events<E>();
     this.maxRound = maxRound;
     this.player = player;
   }
@@ -38,12 +41,12 @@ export default class Round<E extends Entity> {
       gameScenario.name.push(this.gameScenario[i].name);
     }
 
-    //this.event.emit({action: RandomCollection.percentageChance(gameScenario.name, gameScenario.meetChance), caller: this.player});
+    this.event.emit({action: RoundRandomCollection.percentageChance(gameScenario.name, gameScenario.meetChance), caller: this.player});
   }
 
   public startRound() {
     this.currentRound++;
-    console.log(`Le round ${this.currentRound} est sur le point de commencer`)
+    console.log(`Le round ${this.currentRound} est sur le point de commencer sur un total de ${this.maxRound}`)
     this.handleRoundScenario();
   }
 }

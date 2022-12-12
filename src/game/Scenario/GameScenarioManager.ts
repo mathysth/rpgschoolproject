@@ -20,7 +20,7 @@ export default class GameScenarioManager<E extends Entity> {
   }
 
   public async startRound(maxRound: number, player: E) {
-    this.round = new Round<Entity>(20, player);
+    this.round = new Round(20, player);
     this.round.startRound();
     //TODO: setup le scenario afin de lancer une partie et tester le systeme de random sur les pourcentages
   }

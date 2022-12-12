@@ -4,6 +4,7 @@ import { IEventActions } from './Actions/EventActions';
 export default class EventedArray {
   private _stack: IEventActions<Entity>[] = [];
 
+
   private useCallback(cb?: Function) {
     if (cb) {
       cb()
