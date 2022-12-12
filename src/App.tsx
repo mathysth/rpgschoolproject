@@ -1,8 +1,13 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import logo from './logo.svg';
 
 function App() {
+  const game: Game = new Game({
+    round: 20
+  });
+
+  game.startGame();
+  
   return (
     <div className="App">
       <header className="App-header">
