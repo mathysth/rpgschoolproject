@@ -1,26 +1,16 @@
 export default class Entity {
-  private _damage: string = "15";
-  private _health: string = "30";
-  private _isHostile: boolean = true;
-  private _level: number = 1;
+  private _damage: number = 15;
+  private _health: number = 30;
   private _name: string = "";
-  private _shield: string = "15";
+  private _shield: number = 15;
   public childEntity: any;
 
   public get damage(): number {
-    return +this._damage;
+    return this._damage;
   }
 
   public get health(): number {
-    return +this._health;
-  }
-
-  public get isHostile(): boolean {
-    return this._isHostile;
-  }
-
-  public get level(): number {
-    return this._level;
+    return this._health;
   }
 
   public get name(): string {
@@ -38,22 +28,15 @@ export default class Entity {
   }
 
   public set health(health: number) {
-    this._health = health.toString();
+    this._health = health;
   }
 
   public set shield(shield: number) {
-    this._shield = shield.toString();
+    this._shield = shield;
   }
 
   public set damage(damage: number) {
-    this._damage = damage.toString();
+    this._damage = damage;
   }
 
-  public set isHostile(is: boolean) {
-    this._isHostile = is;
-  }
-
-  protected set level(level: number) {
-    this._level = level;
-  }
 }

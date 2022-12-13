@@ -1,15 +1,15 @@
 import Entity from "../../Entities/Entity/Entity";
-import Human from './../../Entities/Human/Human';
 import { IEvent } from './../../Interfaces/IEvent';
 import EventFactory from './../factory/EventFactory';
+import AttackEvent from './AttackEvent';
 
 export default class EventActions{
     public static readonly listAction = [
         {
             name: 'attack',
             //TODO: comprendre pourquoi lorsque je met EntityEvent le processus crash
-            referTo: Human
-        }
+            referTo: AttackEvent
+        },
     ]
     
     public static handleAction<E extends Entity>(event: IEvent<E>): void{
