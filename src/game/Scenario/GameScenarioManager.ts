@@ -1,8 +1,8 @@
 import Entity from "../Entities/Entity/Entity";
-import Human from "../Entities/Human/Human";
-import Round from "../Rounds/Round";
+import { Human } from "../Entities/Human/Human";
+import { Round } from "../Rounds/Round";
 
-export default class GameScenarioManager<E extends Entity> {
+export class GameScenarioManager<E extends Entity> {
   private player: E | undefined;
   private round: Round<Entity> | undefined;
 

@@ -1,8 +1,8 @@
 import Entity from "../Entities/Entity/Entity";
-import RoundRandomCollection from '../Utils/RamdomCollection';
-import Events from './../Events/Events';
+import { RoundRandomCollection } from '../Utils/RamdomCollection';
+import { Events } from './../Events/Events';
 
-export default class Round<E extends Entity> {
+export class Round<E extends Entity> {
   private currentRound: number = 0;
   private readonly event: Events<E>;
   private readonly gameScenario = [

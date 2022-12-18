@@ -1,6 +1,6 @@
 import { IGameProfile } from "../../Interfaces/IGame";
 import Entity from "../Entity/Entity";
-export default class Human extends Entity {
+export class Human extends Entity {
   private usebalePoints: number = 0;
   private _level: number = 1;
 

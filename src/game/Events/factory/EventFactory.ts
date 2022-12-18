@@ -1,7 +1,7 @@
 import Entity from "../../Entities/Entity/Entity";
-import EventActions, { IEventActions } from '../Actions/EventActions';
+import { EventActions, IEventActions } from '../Actions/EventActions';
 
-export default class EventFactory{
+export class EventFactory{
 
     public static formatEvent<E extends Entity>(event: string, caller: E, target?: E): {key: number} &  IEventActions<Entity> | void{
         //TODO: remettre le referto afin de pointer le controller d'action

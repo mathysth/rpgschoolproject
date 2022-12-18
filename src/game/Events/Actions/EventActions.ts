@@ -1,9 +1,9 @@
 import Entity from "../../Entities/Entity/Entity";
 import { IEvent } from './../../Interfaces/IEvent';
-import EventFactory from './../factory/EventFactory';
-import AttackEvent from './AttackEvent';
+import { EventFactory } from './../factory/EventFactory';
+import { AttackEvent } from './AttackEvent';
 
-export default class EventActions{
+export class EventActions{
     public static readonly listAction = [
         {
             name: 'attack',

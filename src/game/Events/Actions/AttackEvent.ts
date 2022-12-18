@@ -1,8 +1,8 @@
 import Entity from "../../Entities/Entity/Entity";
+import { Events } from "../Events";
 import { IEventActions } from './EventActions';
-import Events from "../Events";
 
-export default class AttackEvent extends Events<Entity>{
+export class AttackEvent extends Events<Entity>{
 
   protected action(action: IEventActions<Entity>) {
     const target = action.entities.target as Entity;

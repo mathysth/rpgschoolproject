@@ -1,9 +1,9 @@
 import Entity from "../Entities/Entity/Entity";
 import { IEvent } from './../Interfaces/IEvent';
-import EventActions, { IEventActions } from "./Actions/EventActions";
-import EventedArray from "./EventedArray";
+import { EventActions, IEventActions } from "./Actions/EventActions";
+import EventedArray from './EventedArray';
 
-export default class Events<E extends Entity> {
+export class Events<E extends Entity> {
   public readonly events: EventedArray;
   constructor(callback?: Function, event?: EventedArray) {
     this.events = new EventedArray();  
