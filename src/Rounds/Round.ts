@@ -4,7 +4,7 @@ import { Events } from './../Events/Events';
 
 export class Round<E extends Entity> {
   private currentRound: number = 0;
-  private readonly event: Events<E>;
+  private readonly event: Events;
   private readonly gameScenario = [
     {
       meetChance: 50,
@@ -23,7 +23,7 @@ export class Round<E extends Entity> {
   private readonly player: E;
   
   constructor(maxRound: number, player: E) {
-    this.event = new Events<E>();
+    this.event = new Events();
     this.maxRound = maxRound;
     this.player = player;
   }
