@@ -1,12 +1,13 @@
 import Entity from "../../Entities/Entity/Entity";
-import { EventActions, IEventActions } from '../Actions/EventActions';
+import { IEventActions } from '../../Interfaces/IEvent';
+import { listAction } from './../Actions/Actions';
 
 export class EventFactory{
 
     public static formatEvent<E extends Entity>(event: string, caller: E, target?: E): {key: number} &  IEventActions<Entity> | void{
         //TODO: remettre le referto afin de pointer le controller d'action
-        for (let i: number = 0; i < EventActions.listAction.length; i++) {
-            if(EventActions.listAction[i].name === event){
+        for (let i: number = 0; i < listAction.length; i++) {
+            if(listAction[i].name === event){
                 let eventObject = {
                     entities: {
                         caller,
@@ -14,7 +15,7 @@ export class EventFactory{
                         target: target? target: undefined,
                     }
                 };
-                return  {key: i, ...EventActions.listAction[i], ...eventObject}
+                return  {key: i, ...listAction[i], ...eventObject}
             }
         }
     }

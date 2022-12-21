@@ -1,23 +1,29 @@
 import Entity from "../Entities/Entity/Entity";
-import { IEvent } from './../Interfaces/IEvent';
-import { EventActions, IEventActions } from "./Actions/EventActions";
-
+import { IEvent, IEventActions } from './../Interfaces/IEvent';
+import { listAction } from './Actions/Actions';
+import { EventFactory } from './factory/EventFactory';
+ 
 export class Events {
-  // public readonly events: EventedArray;
-  // constructor(callback?: Function, event?: EventedArray) {
-  //   this.events = new EventedArray();  
-  // }
 
   protected action(action: IEventActions<Entity>) {}
 
   public emit<E extends Entity>(event: IEvent<E>, callback?: Function) {
     this.triggerAction(event);
-    //this.events.push({ ...event }, callback);
-  }
+ }
 
   private triggerAction<E extends Entity>(event: IEvent<E>): boolean{
-    const eventResult = EventActions.handleAction(event);
-    //EventFactory.formatEvent(event.name, event.entities.caller, event.entities.target);
+    const eventResult = this.handleAction(event);
     return true;
+  }
+
+  private handleAction<E extends Entity>(event: IEvent<E>): void{
+    console.log(event );
+    
+    const test: {key: number} & IEventActions<Entity> | void = EventFactory.formatEvent(event.action, event.caller);        
+    if(test){
+        const eventAction = new listAction[test.key].referTo();
+        console.log(eventAction);
+    }
+    console.log(test);   
   }
 }

@@ -1,7 +1,7 @@
 import Entity from "../../Entities/Entity/Entity";
+import { IEventActions } from '../../Interfaces/IEvent';
 import { Events } from "../Events";
-import { IEventActions } from './EventActions';
-
+ 
 export class AttackEvent extends Events{
 
   protected action(action: IEventActions<Entity>) {
