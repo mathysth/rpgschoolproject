@@ -1,12 +1,11 @@
-import Entity from "../Entities/Entity/Entity";
-import { Human } from "../Entities/Human/Human";
-import { Round } from "../Rounds/Round";
+import Entity from '../Entities/Entity/Entity';
+import { Human } from '../Entities/Human/Human';
+import { Round } from '../Rounds/Round';
 
 export class GameScenarioManager<E extends Entity> {
   private player: E | undefined;
   private round: Round<Entity> | undefined;
 
-  
   public async pause() {}
 
   public async start() {
@@ -24,7 +23,6 @@ export class GameScenarioManager<E extends Entity> {
     this.round.startRound();
     //TODO: setup le scenario afin de lancer une partie et tester le systeme de random sur les pourcentages
   }
-
 
   public async stop() {}
 }

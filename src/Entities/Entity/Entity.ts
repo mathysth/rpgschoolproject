@@ -1,7 +1,7 @@
 export default class Entity {
   private _damage: number = 15;
   private _health: number = 30;
-  private _name: string = "";
+  private _name: string = '';
   private _shield: number = 15;
   public childEntity: any;
 
@@ -38,5 +38,4 @@ export default class Entity {
   public set damage(damage: number) {
     this._damage = damage;
   }
-
 }

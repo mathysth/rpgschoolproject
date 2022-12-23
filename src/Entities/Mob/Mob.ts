@@ -1,8 +1,8 @@
-import Entity from "../Entity/Entity";
+import Entity from '../Entity/Entity';
 export default class Mob extends Entity {
   private _isHostile: boolean = true;
 
-  constructor(){
+  constructor() {
     super();
   }
 

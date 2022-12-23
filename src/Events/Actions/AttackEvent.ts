@@ -1,9 +1,8 @@
-import Entity from "../../Entities/Entity/Entity";
+import Entity from '../../Entities/Entity/Entity';
 import { IEventActions } from '../../Interfaces/IEvent';
-import { Events } from "../Events";
- 
-export class AttackEvent implements Events{
-  
+import { Events } from '../Events';
+
+export class AttackEvent implements Events {
   public action(action: IEventActions<Entity>) {
     const target = action.entities.target as Entity;
     let damage = action.entities.caller.damage;
@@ -24,5 +23,4 @@ export class AttackEvent implements Events{
   public isDead<F extends Entity>(entity: F): boolean {
     return entity.health <= 0;
   }
-
 }
