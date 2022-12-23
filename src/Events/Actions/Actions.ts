@@ -1,5 +1,5 @@
-import { AttackEvent } from './AttackEvent';
 
+import { AttackEvent } from './AttackEvent';
 export const listAction = [
     {
         name: 'attack',

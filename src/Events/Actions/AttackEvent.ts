@@ -2,9 +2,9 @@ import Entity from "../../Entities/Entity/Entity";
 import { IEventActions } from '../../Interfaces/IEvent';
 import { Events } from "../Events";
  
-export class AttackEvent extends Events{
-
-  protected action(action: IEventActions<Entity>) {
+export class AttackEvent implements Events{
+  
+  public action(action: IEventActions<Entity>) {
     const target = action.entities.target as Entity;
     let damage = action.entities.caller.damage;
     if (target.shield > 0) {
@@ -15,6 +15,9 @@ export class AttackEvent extends Events{
     if (damage > 0) {
       target.health -= damage;
     }
+
+    console.log(action.entities.caller);
+    console.log(action.entities.target);
   }
 
   //TODO: décaler dans le round

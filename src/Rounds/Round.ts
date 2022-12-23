@@ -1,10 +1,11 @@
 import Entity from "../Entities/Entity/Entity";
-import { RoundRandomCollection } from '../Utils/RamdomCollection';
-import { Events } from './../Events/Events';
+import { listAction } from './../Events/Actions/Actions';
+import { EventFactory } from './../Events/factory/EventFactory';
+import { IEvent, IEventActions } from './../Interfaces/IEvent';
+import { RoundRandomCollection } from './../Utils/RamdomCollection';
 
 export class Round<E extends Entity> {
   private currentRound: number = 0;
-  private readonly event: Events;
   private readonly gameScenario = [
     {
       meetChance: 50,
@@ -23,7 +24,6 @@ export class Round<E extends Entity> {
   private readonly player: E;
   
   constructor(maxRound: number, player: E) {
-    this.event = new Events();
     this.maxRound = maxRound;
     this.player = player;
   }
@@ -41,12 +41,25 @@ export class Round<E extends Entity> {
       gameScenario.name.push(this.gameScenario[i].name);
     }
 
-    this.event.emit({action: RoundRandomCollection.percentageChance(gameScenario.name, gameScenario.meetChance), caller: this.player});
+    // const test = new AttackEvent();
+    // console.log(test);   
+    // this.event.emit({action: RoundRandomCollection.percentageChance(gameScenario.name, gameScenario.meetChance), caller: this.player});
+    this.handleRoundAction({action: RoundRandomCollection.percentageChance(gameScenario.name, gameScenario.meetChance), caller: this.player})
   }
 
   public startRound() {
     this.currentRound++;
     console.log(`Le round ${this.currentRound} est sur le point de commencer sur un total de ${this.maxRound}`)
     this.handleRoundScenario();
+  }
+
+  private handleRoundAction<E extends Entity>(event: IEvent<E>): void{
+    console.log(event );
+    
+    const test: {key: number} & IEventActions<Entity> | void = EventFactory.formatEvent(event.action, event.caller);        
+    if(test){
+        const eventAction = new listAction[test.key].referTo();
+        eventAction.action(test);
+    }
   }
 }
