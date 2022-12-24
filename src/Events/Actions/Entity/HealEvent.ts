@@ -1,0 +1,11 @@
+
+import Entity from '../../../Entities/Entity/Entity';
+import { IEventActions } from '../../../Interfaces/IEvent';
+import { Events } from '../../abstract/Events';
+
+export class HealEvent implements Events {
+  public action(action: IEventActions<Entity>) {
+    const entity: Entity = action.entities.caller;
+    entity.health = entity.maxHealth;
+  }
+}

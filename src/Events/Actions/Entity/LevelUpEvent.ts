@@ -1,7 +1,7 @@
-import Entity from '../../Entities/Entity/Entity';
-import { IEventActions } from '../../Interfaces/IEvent';
-import { Events } from '../Events';
-import { Human } from './../../Entities/Human/Human';
+import Entity from '../../../Entities/Entity/Entity';
+import { Human } from '../../../Entities/Human/Human';
+import { IEventActions } from '../../../Interfaces/IEvent';
+import { Events } from '../../abstract/Events';
 
 export class LevelUpEvent implements Events {
   public action(action: IEventActions<Entity>) {

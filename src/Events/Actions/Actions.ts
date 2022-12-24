@@ -1,5 +1,7 @@
-import { AttackEvent } from './AttackEvent';
-import { LevelUpEvent } from './LevelUpEvent';
+import { AttackEvent } from './Entity/AttackEvent';
+import { HealEvent } from './Entity/HealEvent';
+import { LevelUpEvent } from './Entity/LevelUpEvent';
+
 export const listAction = [
   {
     name: 'attack',
@@ -8,5 +10,9 @@ export const listAction = [
   {
     name: 'levelUp',
     referTo: LevelUpEvent
+  },
+  {
+    name: 'heal',
+    referTo: HealEvent
   }
 ];

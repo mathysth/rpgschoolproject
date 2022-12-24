@@ -8,7 +8,7 @@ export class Round<E extends Entity> {
   private currentRound: number = 0;
   private readonly gameScenario = [
     {
-      meetChance: 25,
+      meetChance: 50,
       name: 'attack'
     },
     {
@@ -16,7 +16,7 @@ export class Round<E extends Entity> {
       name: 'healer'
     },
     {
-      meetChance: 50,
+      meetChance: 25,
       name: 'levelUp'
     }
   ];
