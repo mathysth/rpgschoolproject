@@ -13,7 +13,6 @@ export class GameScenarioManager {
     //const pseudo = await prompt("Votre nom", "michel");
     // const maxRound = await prompt("Nombre de round", '20');
     // player.name = pseudo as string;
-    console.log(player);
     this.player = player;
     this.startRound(20, this.player);
   }

@@ -3,7 +3,6 @@ export default class Entity {
   private _health: number = 30;
   private _name: string = '';
   private _shield: number = 15;
-  public childEntity: any;
 
   public get damage(): number {
     return this._damage;

@@ -7,7 +7,6 @@ export class Human extends Entity {
   private loadProfile(profile: IGameProfile[]) {}
 
   public getParent() {
-    this.childEntity = this;
     return Object.getPrototypeOf(this);
   }
 

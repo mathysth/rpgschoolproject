@@ -7,7 +7,6 @@ export default class Mob extends Entity {
   }
 
   public getParent() {
-    this.childEntity = this;
     return Object.getPrototypeOf(this);
   }
 
