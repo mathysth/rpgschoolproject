@@ -7,10 +7,8 @@ export class LevelUpEvent implements Events {
   public action(action: IEventActions<Entity>) {
     //TODO: dégager le as et forcer le typage sur l'entity human
     const entity: Human = action.entities.caller as Human;
-    console.log(entity);
-    entity.level = entity.level++;
+    entity.level = entity.level+= 1;
     entity.health = Math.round(entity.health + entity.health * 0.1);
-    console.log(entity);
   }
 
   //TODO: décaler dans le round
