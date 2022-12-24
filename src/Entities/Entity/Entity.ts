@@ -21,8 +21,6 @@ export default class Entity {
     return +this._shield;
   }
 
-  public levelUp(): void {}
-
   public set name(name: string) {
     this._name = name.toString();
   }

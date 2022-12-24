@@ -27,7 +27,7 @@ export class RoundRandomCollection {
   public static percentageChance(
     values: Array<string>,
     chances: Array<string>
-  ) {
+  ): string {
     this.checkPercentageValidity(chances);
     const pool = [];
     for (let i = 0; i < chances.length; i++) {

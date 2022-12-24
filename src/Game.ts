@@ -1,10 +1,9 @@
-import Entity from './Entities/Entity/Entity';
 import { IGameConfig } from './Interfaces/IGame';
 import { GameScenarioManager } from './Scenario/GameScenarioManager';
 
 export class Game {
   private config: IGameConfig;
-  private gameScenarioManager: GameScenarioManager<Entity>;
+  private gameScenarioManager: GameScenarioManager;
 
   constructor(config: IGameConfig) {
     this.gameScenarioManager = new GameScenarioManager();

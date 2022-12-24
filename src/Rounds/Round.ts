@@ -8,7 +8,7 @@ export class Round<E extends Entity> {
   private currentRound: number = 0;
   private readonly gameScenario = [
     {
-      meetChance: 50,
+      meetChance: 25,
       name: 'attack'
     },
     {
@@ -16,7 +16,7 @@ export class Round<E extends Entity> {
       name: 'healer'
     },
     {
-      meetChance: 25,
+      meetChance: 50,
       name: 'levelUp'
     }
   ];
@@ -59,7 +59,7 @@ export class Round<E extends Entity> {
   }
 
   private handleRoundAction<E extends Entity>(event: IEvent<E>): void {
-    console.log(event);
+    console.log(event.action);
 
     const test: ({ key: number } & IEventActions<Entity>) | void =
       EventFactory.formatEvent(event.action, event.caller);
