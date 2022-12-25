@@ -4,7 +4,7 @@ import { IEventActions } from '../../../Interfaces/IEvent';
 import { Events } from '../../abstract/Events';
 
 export class LevelUpEvent implements Events {
-  public action(action: IEventActions<Entity>) {
+  public action(action: IEventActions) {
     //TODO: dégager le as et forcer le typage sur l'entity human
     const entity: Human = action.entities.caller as Human;
     entity.level = entity.level+= 1;
@@ -12,7 +12,7 @@ export class LevelUpEvent implements Events {
   }
 
   //TODO: décaler dans le round
-  public isDead<F extends Entity>(entity: F): boolean {
+  public isDead(entity: Entity): boolean {
     return entity.health <= 0;
   }
 }

@@ -3,11 +3,11 @@ import { IEventActions } from '../../Interfaces/IEvent';
 import { listAction } from './../Actions/Actions';
 
 export class EventFactory {
-  public static formatEvent<E extends Entity>(
+  public static formatEvent(
     event: string,
-    caller: E,
-    target?: E
-  ): ({ key: number } & IEventActions<Entity>) | void {
+    caller: Entity,
+    target?: Entity
+  ): ({ key: number } & IEventActions) | void {
     //TODO: remettre le referto afin de pointer le controller d'action
     for (let i: number = 0; i < listAction.length; i++) {
       if (listAction[i].name === event) {

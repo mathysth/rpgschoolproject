@@ -4,7 +4,7 @@ import { EventFactory } from './../Events/factory/EventFactory';
 import { IEvent, IEventActions } from './../Interfaces/IEvent';
 import { RoundRandomCollection } from './../Utils/RamdomCollection';
 
-export class Round<E extends Entity> {
+export class Round {
   private currentRound: number = 0;
   private readonly gameScenario = [
     {
@@ -21,9 +21,9 @@ export class Round<E extends Entity> {
     }
   ];
   private maxRound: number;
-  private readonly player: E;
+  private readonly player: Entity;
 
-  constructor(maxRound: number, player: E) {
+  constructor(maxRound: number, player: Entity) {
     this.maxRound = maxRound;
     this.player = player;
   }
@@ -58,14 +58,15 @@ export class Round<E extends Entity> {
     });
   }
 
-  private handleRoundAction<E extends Entity>(event: IEvent<E>): void {
+  private handleRoundAction(event: IEvent): void {
     console.log(event.action);
 
-    const test: ({ key: number } & IEventActions<Entity>) | void =
+    const test: ({ key: number } & IEventActions) | void =
       EventFactory.formatEvent(event.action, event.caller);
     if (test) {
       const eventAction = new listAction[test.key].referTo();
       eventAction.action(test);
+      console.log(test.entities.caller)
     }
   }
 }

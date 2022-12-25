@@ -4,7 +4,7 @@ import { Round } from '../Rounds/Round';
 
 export class GameScenarioManager {
   private player: Entity | undefined;
-  private round: Round<Entity> | undefined;
+  private round: Round | undefined;
 
   public async pause() {}
 

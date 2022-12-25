@@ -1,15 +1,14 @@
 import Entity from '../Entities/Entity/Entity';
 
-export interface IEvent<E extends Entity> {
+export interface IEvent {
   action: string;
-  caller: E;
+  caller: Entity;
 }
 
-export interface IEventActions<E extends Entity> {
+export interface IEventActions {
   name: string;
-  // referTo: any
   entities: {
-    caller: E;
-    target?: E;
+    caller: Entity;
+    target?: Entity;
   };
 }

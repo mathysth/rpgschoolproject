@@ -3,7 +3,7 @@ import { IEventActions } from '../../../Interfaces/IEvent';
 import { Events } from '../../abstract/Events';
 
 export class AttackEvent implements Events {
-  public action(action: IEventActions<Entity>) {
+  public action(action: IEventActions) {
     const target = action.entities.target as Entity;
     let damage = action.entities.caller.damage;
     if (target.shield > 0) {
