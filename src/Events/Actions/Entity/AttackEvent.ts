@@ -59,6 +59,7 @@ export class AttackEvent implements Events {
     }
     
     console.log(`${dialog} ${figthStatus?.winner.name}`);
+    
 
     if(figthStatus?.type === 'Human'){
       return 'win';
@@ -90,7 +91,7 @@ export class AttackEvent implements Events {
 
   private handleFigth(entities: IAttack, action: IEventActions) {
     const damage = (Math.round(Math.random() * (12 - 1)) + 1) + entities.caller.damage - entities.target.shield;
-    entities.target.health -= damage;
+    entities.target.health = entities.target.health - damage;
     const isDead = this.isDead(entities.target);
     const output = {
       type: entities.caller.constructor.name,
