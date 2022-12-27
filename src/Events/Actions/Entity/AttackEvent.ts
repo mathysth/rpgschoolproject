@@ -16,10 +16,12 @@ export class AttackEvent implements Events {
     }
   ]
 
-  public async action(action: IEventActions) {
+  public async action(action: IEventActions): Promise<boolean> {
+    const dialog = 'Le gagnant de ce combat est';
     const firstAttacker = this.defineFirstAttacker();
     let attacker: IAttack = this.getOpponent(firstAttacker, action);
     let continueFigth: Boolean = true;
+    let figthStatus;
     let i = 0;
     while(continueFigth){
       if(i > 0){
@@ -29,12 +31,17 @@ export class AttackEvent implements Events {
           attacker = this.getOpponent(this.getOppositeEntityName(firstAttacker), action);
         }
       }
-      continueFigth = await this.handleFigth(attacker, action);
+      figthStatus = await this.handleFigth(attacker, action);
+      continueFigth = figthStatus.continue;
       i++;
     }
-
-    // console.log(action);
     
+    console.log(`${dialog} ${figthStatus?.winner.name}`);
+
+    if(figthStatus?.type === 'Human'){
+      return true;
+    }
+    return false;
   }
 
   private defineFirstAttacker(){
@@ -78,13 +85,20 @@ export class AttackEvent implements Events {
     return 'human';
   }
 
-  private handleFigth(entities: IAttack, action: IEventActions): boolean {
+  private handleFigth(entities: IAttack, action: IEventActions) {
     const damage = (Math.round(Math.random() * (12 - 1)) + 1) + entities.caller.damage - entities.target.shield;
-    console.log(entities.target.constructor.name);
-    console.log(entities.target.health);
     entities.target.health -= damage;
-    console.log(entities.target.health);
-    return this.isDead(entities.target);
+    const isDead = this.isDead(entities.target);
+    const output = {
+      type: entities.caller.constructor.name,
+      winner: entities.caller,
+      continue: true,
+    }
+    if(isDead){
+      output.continue = false;
+    }
+
+    return output;
   }
 
   private isDead(entity: Entity): boolean {
