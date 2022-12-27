@@ -18,6 +18,15 @@ export class RoundRandomCollection {
     return array;
   }
 
+  private static checkPercentageValidity(chances: Array<string>): void {
+    let finalsChances: number = 0;
+    chances.map(c => (finalsChances += +c));
+
+    if (finalsChances > 100) {
+      throw new Error('Le total des pourcentages est supérieur à 100');
+    }
+  }
+
   /**
    * Permet de donner des valeurs avec des pourcentages custom et de retourner aléatoirement une valeur
    * @param values
@@ -36,14 +45,5 @@ export class RoundRandomCollection {
       }
     }
     return values[this.arrayShuffle(pool)['0']];
-  }
-
-  private static checkPercentageValidity(chances: Array<string>): void {
-    let finalsChances: number = 0;
-    chances.map(c => (finalsChances += +c));
-
-    if (finalsChances > 100) {
-      throw new Error('Le total des pourcentages est supérieur à 100');
-    }
   }
 }

@@ -12,7 +12,7 @@ export const listAction = [
     referTo: LevelUpEvent
   },
   {
-    name: 'heal',
+    name: 'healer',
     referTo: HealEvent
   }
 ];

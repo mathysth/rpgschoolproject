@@ -9,10 +9,6 @@ export class CharactereCreationScenario {
         this.player = player;
     }
 
-    public async initialize(): Promise<void> {
-        await this.ask('Quel est le prénom de votre charactère : \n');
-    }
-
     private async ask(question: string): Promise<void> { 
         const giveName = (name: string) => {
             this.giveName(name);
@@ -25,8 +21,12 @@ export class CharactereCreationScenario {
             });
         })
     }
-    
+
     private giveName(name: string) {
        this.player.name = name;
+    }
+
+    public async initialize(): Promise<void> {
+        await this.ask('Quel est le prénom de votre charactère : \n');
     }
 }

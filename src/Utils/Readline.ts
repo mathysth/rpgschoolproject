@@ -6,11 +6,11 @@ export class ReadlineUtils{
         output: process.stdout
     });
 
-    public static getReadline(){
-        return ReadlineUtils.rl;
-    }
-
     public static closeReadline(){
         this.rl.close();
+    }
+
+    public static getReadline(){
+        return ReadlineUtils.rl;
     }
 }

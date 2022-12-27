@@ -16,7 +16,26 @@ export class AttackEvent implements Events {
     }
   ]
 
-  public async action(action: IEventActions): Promise<boolean> {
+  private defineFirstAttacker(){
+    const gameScenario: {
+      meetChance: Array<string>;
+      name: Array<string>;
+    } = {
+      meetChance: [],
+      name: []
+    };
+    for (let i = 0; i < this.chances.length; i++) {
+      gameScenario.meetChance.push(this.chances[i].chance.toString());
+      gameScenario.name.push(this.chances[i].name);
+    }
+
+    return RoundRandomCollection.percentageChance(
+      gameScenario.name,
+      gameScenario.meetChance
+    );
+  }
+
+  public async action(action: IEventActions): Promise<string> {
     const dialog = 'Le gagnant de ce combat est';
     const firstAttacker = this.defineFirstAttacker();
     let attacker: IAttack = this.getOpponent(firstAttacker, action);
@@ -39,28 +58,9 @@ export class AttackEvent implements Events {
     console.log(`${dialog} ${figthStatus?.winner.name}`);
 
     if(figthStatus?.type === 'Human'){
-      return true;
+      return 'win';
     }
-    return false;
-  }
-
-  private defineFirstAttacker(){
-    const gameScenario: {
-      meetChance: Array<string>;
-      name: Array<string>;
-    } = {
-      meetChance: [],
-      name: []
-    };
-    for (let i = 0; i < this.chances.length; i++) {
-      gameScenario.meetChance.push(this.chances[i].chance.toString());
-      gameScenario.name.push(this.chances[i].name);
-    }
-
-    return RoundRandomCollection.percentageChance(
-      gameScenario.name,
-      gameScenario.meetChance
-    );
+    return 'lost';
   }
 
   // les statistiques ont été mis à l'envers car cette fonction retourne toujours l'inverse de sa valeur
