@@ -15,7 +15,7 @@ export class Human extends Entity {
     return this._level;
   }
 
-  public set level(level: number) {
+  public setLevel(level: number) {
     this._level = level;
   }
 

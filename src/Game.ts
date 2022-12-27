@@ -23,7 +23,7 @@ export class Game {
 
   public startGame(): Promise<boolean> {
     return this.gameScenarioManager
-      .start()
+      .start(this.config.round)
       .then(function (data) {
         return true;
       })

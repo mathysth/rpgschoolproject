@@ -6,10 +6,6 @@ export default class Mob extends Entity {
     super();
   }
 
-  public getParent() {
-    return Object.getPrototypeOf(this);
-  }
-
   public get isHostile(): boolean {
     return this._isHostile;
   }

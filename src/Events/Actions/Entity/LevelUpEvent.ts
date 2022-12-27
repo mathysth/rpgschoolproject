@@ -5,10 +5,10 @@ import { DistributePointsEntityScenario } from '../../../Scenario/Entity/Distrib
 import { Events } from '../../Abstract/Events';
 
 export class LevelUpEvent implements Events {
-  public action(action: IEventActions) {
+  public async action(action: IEventActions) {
     //TODO: dégager le as et forcer le typage sur l'entity human
     const entity: Human = action.entities.caller as Human;
-    entity.level = entity.level+= 1;
+    entity.setLevel(entity.level + 1);
     entity.health = Math.round(entity.health + entity.health * 0.1);
     entity.usebalePoints+= 3;
 

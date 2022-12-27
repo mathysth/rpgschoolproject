@@ -48,7 +48,9 @@ export class DistributePointsEntityScenario {
         return false;
     }
 
-    private async ask(target: string, question: string): Promise<void> { 
+    private async ask(target: string, question: string): Promise<void> {
+        console.log(`Point(s) restant : ${this.player.usebalePoints} `);
+         
         const removePoints = async (pointToRemove: number) => {
             await this.removePoints(target, pointToRemove);
         }
