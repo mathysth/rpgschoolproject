@@ -1,22 +1,18 @@
-import * as readline from 'readline';
+import { ReadlineUtils } from '../../Utils/Readline';
 import { Human } from './../../Entities/Human/Human';
 
 export class DistributePointsEntityScenario {
     private readonly player: Human;
-    private readonly rl;
+    private readonly rl = ReadlineUtils.getReadline();
     private readonly dialog = 'Combien de points voulez vous mettre sur votre ';
 
     constructor(player: Human) {
-        this.rl = readline.createInterface({
-            input: process.stdin,
-            output: process.stdout
-        });
         this.player = player;
     }
 
     public async distribute(): Promise<void> {
         await this.ask('shield',`${this.dialog} armure : \n`);
-        await this.ask('life',`${this.dialog} vie : \n `);
+        await this.ask('life',`${this.dialog} vie : \n`);
         await this.ask('strengh',`${this.dialog} force : \n`);
     }
 

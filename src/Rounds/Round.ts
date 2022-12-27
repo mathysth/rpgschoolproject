@@ -1,6 +1,6 @@
 import Entity from '../Entities/Entity/Entity';
+import { EventFactory } from '../Events/Factory/EventFactory';
 import { listAction } from './../Events/Actions/Actions';
-import { EventFactory } from './../Events/factory/EventFactory';
 import { IEvent, IEventActions } from './../Interfaces/IEvent';
 import { RoundRandomCollection } from './../Utils/RamdomCollection';
 

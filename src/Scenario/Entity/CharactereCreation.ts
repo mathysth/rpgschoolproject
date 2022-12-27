@@ -1,15 +1,11 @@
-import * as readline from 'readline';
 import { Human } from './../../Entities/Human/Human';
+import { ReadlineUtils } from './../../Utils/Readline';
 
 export class CharactereCreationScenario {
     private readonly player: Human;
-    private readonly rl;
+    private readonly rl = ReadlineUtils.getReadline();
 
     constructor(player: Human) {
-        this.rl = readline.createInterface({
-            input: process.stdin,
-            output: process.stdout
-        });
         this.player = player;
     }
 

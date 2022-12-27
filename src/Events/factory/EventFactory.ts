@@ -1,6 +1,6 @@
 import Entity from '../../Entities/Entity/Entity';
 import { IEventActions } from '../../Interfaces/IEvent';
-import { listAction } from './../Actions/Actions';
+import { listAction } from '../Actions/Actions';
 
 export class EventFactory {
   public static formatEvent(

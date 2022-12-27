@@ -1,6 +1,6 @@
 import Entity from '../../../Entities/Entity/Entity';
 import { IEventActions } from '../../../Interfaces/IEvent';
-import { Events } from '../../abstract/Events';
+import { Events } from '../../Abstract/Events';
 
 export class AttackEvent implements Events {
   public action(action: IEventActions) {

@@ -2,7 +2,7 @@ import Entity from '../../../Entities/Entity/Entity';
 import { Human } from '../../../Entities/Human/Human';
 import { IEventActions } from '../../../Interfaces/IEvent';
 import { DistributePointsEntityScenario } from '../../../Scenario/Entity/DistributePointsEntity';
-import { Events } from '../../abstract/Events';
+import { Events } from '../../Abstract/Events';
 
 export class LevelUpEvent implements Events {
   public action(action: IEventActions) {
