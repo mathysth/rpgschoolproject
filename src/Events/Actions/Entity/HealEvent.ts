@@ -7,5 +7,6 @@ export class HealEvent implements Events {
   public async action(action: IEventActions) {
     const entity: Entity = action.entities.caller;
     entity.health = entity.maxHealth;
+    console.log(`Merlin t'a restauré 100% de tes hp : ${entity.health}`);
   }
 }

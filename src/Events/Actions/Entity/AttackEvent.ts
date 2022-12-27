@@ -42,6 +42,9 @@ export class AttackEvent implements Events {
     let continueFigth: Boolean = true;
     let figthStatus;
     let i = 0;
+
+    console.log(`Le premier à attaquer est : ${attacker.caller.name}`);
+    
     while(continueFigth){
       if(i > 0){
         if(i%2 == 0){

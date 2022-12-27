@@ -108,7 +108,11 @@ export class Round {
       
       if(roundStatus === 'lost'){
         this.currentRound = this.maxRound;
-        console.log('Tu as perdu pd');
+        console.log('Tu as perdu');
+        ReadlineUtils.closeReadline();
+      }
+
+      if(this.currentRound === this.maxRound - 1){
         ReadlineUtils.closeReadline();
       }
     }
