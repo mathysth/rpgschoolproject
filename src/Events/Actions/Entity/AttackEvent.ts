@@ -53,7 +53,7 @@ export class AttackEvent implements Events {
           attacker = this.getOpponent(this.getOppositeEntityName(firstAttacker), action);
         }
       }
-      figthStatus = await this.handleFigth(attacker, action);
+      figthStatus = await this.handleFigth(attacker);
       continueFigth = figthStatus.continue;
       i++;
     }
@@ -89,7 +89,7 @@ export class AttackEvent implements Events {
     return 'human';
   }
 
-  private handleFigth(entities: IAttack, action: IEventActions) {
+  private handleFigth(entities: IAttack) {
     const damage = (Math.round(Math.random() * (12 - 1)) + 1) + entities.caller.damage - entities.target.shield;
     entities.target.health = entities.target.health - damage;
     const isDead = this.isDead(entities.target);
