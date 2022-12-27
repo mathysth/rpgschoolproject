@@ -4,7 +4,7 @@ import { Human } from './../../Entities/Human/Human';
 export class DistributePointsEntity {
     private readonly player: Human;
     private readonly rl;
-    private leftPoints: number = 0;
+    private readonly dialog = 'Combien de points voulez vous mettre sur votre ';
 
     constructor(player: Human) {
         this.rl = readline.createInterface({
@@ -12,54 +12,66 @@ export class DistributePointsEntity {
             output: process.stdout
         });
         this.player = player;
-        console.log(this.player);
         this.distribute();
     }
 
     public async distribute() {
-        this.leftPoints = this.player.usebalePoints;
-        const dialog = 'Combien de points voulez vous mettre sur votre ';
+        await this.ask('shield',`${this.dialog} armure : \n`);
+        await this.ask('life',`${this.dialog} vie : \n `);
+        await this.ask('strengh',`${this.dialog} force : \n`);
 
-        this.ask(`${dialog} armure`);
-
-        // const life = await this.rl.question(`${dialog} pv`);
-        // await this.removePoints(entity, life, currentPoints);
-
-        // const strengh = await this.rl.question(`${dialog} force`);
-        // await this.removePoints(entity, strengh, currentPoints);
-
+        this.closeDialog();
     }
 
-    private async removePoints(pointToRemove: number) {
+    private async removePoints(target: string,pointToRemove: number): Promise<void> {
         const enougthPoint = this.checkPoint(pointToRemove);
-        if (enougthPoint) {
+        if (!enougthPoint) {
+            console.log('Vous n\'avez pas assez de points');
+            await this.ask(target,`${this.dialog} ${target} : \n`);
+        } else {
             this.player.usebalePoints -= pointToRemove;
+            switch (target) {
+                case 'shield':
+                    this.player.shield += pointToRemove;
+                    break;
+
+                case 'life':
+                    this.player.health += pointToRemove;
+                    this.player.maxHealth += pointToRemove;
+                    break;
+
+                case 'strengh':
+                    this.player.damage += pointToRemove;
+                    break
+            }
         }
-        //TODO: ajouter le cumulant sur sa destination
-        console.log(this.player);
     }
 
     private checkPoint(pointsToAdd: number): boolean {
-        if (+pointsToAdd <= this.leftPoints) {
+        if (pointsToAdd <= this.player.usebalePoints) {
             return true;
         }
 
         return false;
     }
 
-    private ask(question: string) {
-        const removePoints = (pointToRemove: number) => {
-            this.removePoints(pointToRemove);
+    private async ask(target: string, question: string): Promise<void> { 
+        const removePoints = async (pointToRemove: number) => {
+            await this.removePoints(target, pointToRemove);
         }
         
-        this.rl.question(question, function (answer) {
-            let points = 0;
-            if(parseInt(answer)){
-                points = +answer;
-            }
-
-            removePoints(points)
-        });
+        return new Promise<void>((resolve, reject) => {
+            this.rl.question(question, function (answer) {
+                let points = 0;
+                if(parseInt(answer)){
+                    points = +answer;
+                }
+    
+                removePoints(points).then(() => {
+                    resolve();
+                })
+            });
+        })
     }
 
     public closeDialog(): void{

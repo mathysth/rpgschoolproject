@@ -26,8 +26,4 @@ export class Human extends Entity {
   public set usebalePoints(_usebalePoints: number) {
     this._usebalePoints = _usebalePoints;
   }
-
-  public use() {
-    this.usebalePoints--;
-  }
 }

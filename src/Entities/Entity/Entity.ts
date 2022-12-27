@@ -1,7 +1,7 @@
 export default class Entity {
   private _damage: number = 15;
-  private _maxHealth: number = 30;
   private _health: number = 30;
+  private _maxHealth: number = 30;
   private _name: string = '';
   private _shield: number = 15;
 
@@ -13,7 +13,7 @@ export default class Entity {
     return this._health;
   }
 
-  public get maxhHealth(): number {
+  public get maxHealth(): number {
     return this._maxHealth;
   }
 
@@ -27,16 +27,17 @@ export default class Entity {
   }
 
   public set name(name: string) {
-    this._name = name.toString();
+    this._name = name;
   }
 
   public set health(health: number) {
     this._health = health;
   }
 
-  public set maxHealth(health: number) {
-    this._maxHealth = health;
+  public set maxHealth(maxHealth: number) {
+    this._maxHealth = maxHealth;
   }
+
 
   public set shield(shield: number) {
     this._shield = shield;

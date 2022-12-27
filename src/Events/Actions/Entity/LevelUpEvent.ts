@@ -13,7 +13,7 @@ export class LevelUpEvent implements Events {
     entity.usebalePoints+= 3;
 
     const test = new DistributePointsEntity(entity);
-    test.distribute(entity);
+    test.distribute();
   }
 
   //TODO: décaler dans le round
