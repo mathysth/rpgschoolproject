@@ -1,8 +1,8 @@
 import Entity from '../../../Entities/Entity/Entity';
 import { Human } from '../../../Entities/Human/Human';
 import { IEventActions } from '../../../Interfaces/IEvent';
+import { DistributePointsEntityScenario } from '../../../Scenario/Entity/DistributePointsEntity';
 import { Events } from '../../abstract/Events';
-import { DistributePointsEntity } from './../../../Scenario/Entity/DistributePointsEntity';
 
 export class LevelUpEvent implements Events {
   public action(action: IEventActions) {
@@ -12,7 +12,7 @@ export class LevelUpEvent implements Events {
     entity.health = Math.round(entity.health + entity.health * 0.1);
     entity.usebalePoints+= 3;
 
-    const test = new DistributePointsEntity(entity);
+    const test = new DistributePointsEntityScenario(entity);
     test.distribute();
   }
 

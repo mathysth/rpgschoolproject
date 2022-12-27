@@ -1,7 +1,7 @@
 import * as readline from 'readline';
 import { Human } from './../../Entities/Human/Human';
 
-export class DistributePointsEntity {
+export class DistributePointsEntityScenario {
     private readonly player: Human;
     private readonly rl;
     private readonly dialog = 'Combien de points voulez vous mettre sur votre ';
@@ -12,15 +12,12 @@ export class DistributePointsEntity {
             output: process.stdout
         });
         this.player = player;
-        this.distribute();
     }
 
-    public async distribute() {
+    public async distribute(): Promise<void> {
         await this.ask('shield',`${this.dialog} armure : \n`);
         await this.ask('life',`${this.dialog} vie : \n `);
         await this.ask('strengh',`${this.dialog} force : \n`);
-
-        this.closeDialog();
     }
 
     private async removePoints(target: string,pointToRemove: number): Promise<void> {
@@ -60,9 +57,9 @@ export class DistributePointsEntity {
             await this.removePoints(target, pointToRemove);
         }
         
-        return new Promise<void>((resolve, reject) => {
+        return new Promise<void>((resolve) => {
             this.rl.question(question, function (answer) {
-                let points = 0;
+                let points = 9999;
                 if(parseInt(answer)){
                     points = +answer;
                 }
@@ -72,9 +69,5 @@ export class DistributePointsEntity {
                 })
             });
         })
-    }
-
-    public closeDialog(): void{
-        this.rl.close();
     }
 }
