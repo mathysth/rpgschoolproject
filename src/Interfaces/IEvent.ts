@@ -12,3 +12,8 @@ export interface IEventActions {
     target?: Entity;
   };
 }
+
+export interface IAttack {
+  caller: Entity,
+  target: Entity
+}

@@ -32,17 +32,17 @@ export class Round {
   }
 
   public async startRound() {
-    while (this.currentRound < this.maxRound) {
+    while (this.currentRound < 1) {
       this.currentRound++;
       console.log(
         `Le round ${this.currentRound} est sur le point de commencer sur un total de ${this.maxRound}`
       );
       await this.handleRoundScenario()
     }
-    this.result();
+    // this.result();
   }
 
-  public async result(){
+  public async result() {
     ReadlineUtils.closeReadline();
   }
 
@@ -77,8 +77,9 @@ export class Round {
   }
 
   private handleRoundAction(event: IEvent): Promise<void> {
+    console.log(event.action);
     const target: Entity | undefined = this.handleCaseActions(event.action);
-    return new Promise(function (resolve, rejects) {
+    return new Promise(function (resolve) {
       const eventFormatted: ({ key: number } & IEventActions) | void = EventFactory.formatEvent(event.action, event.caller, target);
       if (eventFormatted) {
         const eventAction = new listAction[eventFormatted.key].referTo();
@@ -91,8 +92,8 @@ export class Round {
     })
   }
 
-  private handleCaseActions(action: string): Entity | undefined{
-    switch(action){
+  private handleCaseActions(action: string): Entity | undefined {
+    switch (action) {
       case 'attack': {
         const mob = new Mob();
         mob.name = 'Alfred';

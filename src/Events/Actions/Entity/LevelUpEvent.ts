@@ -12,8 +12,8 @@ export class LevelUpEvent implements Events {
     entity.health = Math.round(entity.health + entity.health * 0.1);
     entity.usebalePoints+= 3;
 
-    const test = new DistributePointsEntityScenario(entity);
-    test.distribute();
+    const pointDistribution = new DistributePointsEntityScenario(entity);
+    await pointDistribution.distribute();
   }
 
   //TODO: décaler dans le round

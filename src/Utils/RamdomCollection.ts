@@ -1,6 +1,6 @@
 export class RoundRandomCollection {
   /**
-   * Shuffle l'array donnée en input afin de retourner aléatoirement une la key du tableau
+   * Shuffle l'array donnée en input afin de retourner aléatoirement une key du tableau
    * @param array
    * @returns
    */
